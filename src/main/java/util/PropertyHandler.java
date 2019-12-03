@@ -5,15 +5,15 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Properties;
 
-public class PropertyHandler {
+import static util.Constants.APP_PROPERTIES_PATH;
 
-    private static final String APP_PROPERTIES = "test_properties/runner.properties";
+public class PropertyHandler {
 
     private static Properties pr = new Properties();
 
     static {
         try {
-            FileInputStream inp = new FileInputStream(Objects.requireNonNull(PropertyHandler.class.getClassLoader().getResource(APP_PROPERTIES)).getPath());
+            FileInputStream inp = new FileInputStream(Objects.requireNonNull(PropertyHandler.class.getClassLoader().getResource(APP_PROPERTIES_PATH)).getPath());
             pr.load(inp);
             inp.close();
         } catch (IOException e) {
