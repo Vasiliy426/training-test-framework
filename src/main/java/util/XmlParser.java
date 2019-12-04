@@ -54,14 +54,14 @@ public class XmlParser {
     private XmlParser updateCredentials(String newLogin, String newPassword) {
         NodeList nodeList = document.getDocumentElement().getElementsByTagName("ser:value");
         for (int i = 0; i < nodeList.getLength(); i++) {
-            Element loginElem = (Element) nodeList.item(i);
-            String loginElemValue = loginElem.getNodeValue();
-            if (loginElemValue.equals("LOGIN") {
-                loginElem.setNodeValue(newLogin);
+            Element credentialsDomElem = (Element) nodeList.item(i);
+            String credentialsElemValue = credentialsDomElem.getNodeValue();
+            if (credentialsElemValue.equals("LOGIN")) {
+                credentialsDomElem.setNodeValue(newLogin);
                 continue;
             }
-            if (loginElemValue.equals("PASSWORD") {
-                loginElem.setNodeValue(newPassword);
+            if (credentialsElemValue.equals("PASSWORD")) {
+                credentialsDomElem.setNodeValue(newPassword);
                 break;
             }
         }
@@ -71,10 +71,10 @@ public class XmlParser {
     private XmlParser updateClaimNumber(String newClaimNumber) {
         NodeList nodeList = document.getDocumentElement().getElementsByTagName("ClaimNumber");
         for (int i = 0; i < nodeList.getLength(); i++) {
-            Element claimNumberElem = (Element) nodeList.item(i);
-            String loginElemValue = claimNumberElem.getNodeValue();
-            if (loginElemValue.contains("AX2018-")) {
-                claimNumberElem.setNodeValue(newClaimNumber);
+            Element claimNumberDomElem = (Element) nodeList.item(i);
+            String claimNumberTadName = claimNumberDomElem.getTagName();
+            if (claimNumberTadName.equals("ClaimNumber")) {
+                claimNumberDomElem.setNodeValue(newClaimNumber);
                 break;
             }
         }
