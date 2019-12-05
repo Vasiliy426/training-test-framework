@@ -2,7 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import data.Credentials;
-import data.DataHandler;
+import util.DataHandler;
 
 import static com.codeborne.selenide.Selenide.$;
 
