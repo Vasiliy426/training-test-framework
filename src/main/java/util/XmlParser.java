@@ -74,7 +74,7 @@ public class XmlParser {
             TransformerFactory tf = TransformerFactory.newInstance();
             Transformer transformer = tf.newTransformer();
             transformer.transform(domSource, result);
-            String xmlDocumentAsString = writer.toString().replaceAll("\n|\r", "");
+            xmlDocumentAsString = writer.toString().replaceAll("\n|\r", "");
         } catch (Exception e) {
             throw new RuntimeException("Error converting to String", e);
         }
