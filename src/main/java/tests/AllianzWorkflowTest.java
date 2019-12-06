@@ -6,11 +6,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import soap.SOAP;
 import util.PropertyHandler;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.sleep;
-import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 public class AllianzWorkflowTest {
 
@@ -19,15 +19,17 @@ public class AllianzWorkflowTest {
 
     @BeforeMethod(alwaysRun = true)
     public void startBrowser() {
-        driver = Browser.getUserCreatedWebDriver();
-        setWebDriver(driver);
+        Browser browser =  new Browser();
+        browser.createRemoteWebDriverChrome();
         open(PropertyHandler.getValue("appURL"));
         loginPage = new LoginPage();
     }
 
     @Test
     public void c65148_WorkflowBREOnline8020() {
-        loginPage.loginApp();
+        SOAP.createCase();
+        loginPage.loginApp().openCase("AX2018-11111112");
+
         //just to test that it works
         System.out.println("works");
         sleep(5000);
