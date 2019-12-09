@@ -7,6 +7,7 @@ public class Constants {
     public static final String READY_XML_PATH = "test_data/xml/C65148_WorkflowBREOnline8020_header_footer.xml";
     public static final String TEST_XML_PATH = "test_data/xml/test.xml";
     public static final String APP_PROPERTIES_PATH = "test_properties/runner.properties";
+    public static final String XML_OLD_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 
     public static final String XML_SOAP_HEADER =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +

@@ -12,7 +12,7 @@ import util.PropertyHandler;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.sleep;
 
-public class AllianzWorkflowTest {
+public class C65148_WorkflowBREOnline8020 {
 
     private WebDriver driver;
     private LoginPage loginPage;
@@ -28,8 +28,7 @@ public class AllianzWorkflowTest {
     @Test
     public void c65148_WorkflowBREOnline8020() {
         SOAP.createCase();
-        loginPage.loginApp().openCase("AX2018-11111112");
-
+        loginPage.loginApp().openCase(util.XmlParser.randomClaimNumber);
         //just to test that it works
         System.out.println("works");
         sleep(5000);
