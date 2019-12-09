@@ -1,6 +1,5 @@
 package listeners;
 
-import com.codeborne.selenide.WebDriverRunner;
 import com.relevantcodes.extentreports.LogStatus;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -36,11 +35,11 @@ public class Listeners implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
-        int testMethodsCount = context.getAllTestMethods().length;
+//        stub
     }
 
     @Override
     public void onFinish(ITestContext context) {
-        float suiteExecClearTimeSecs = convertMillisToDecimalSeconds(suiteExecClearTime);
+//        stub
     }
 }

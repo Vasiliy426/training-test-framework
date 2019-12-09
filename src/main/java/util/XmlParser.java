@@ -22,7 +22,11 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
-import static util.Constants.*;
+import static util.Constants.RAW_XML_PATH;
+import static util.Constants.READY_XML_PATH;
+import static util.Constants.XML_OLD_HEADER;
+import static util.Constants.XML_SOAP_FOOTER;
+import static util.Constants.XML_SOAP_HEADER;
 
 public class XmlParser {
     private Document domDocument = null;
@@ -83,7 +87,7 @@ public class XmlParser {
 
     private XmlParser addHeaderAndFooter(String xmlHeader, String xmlFooter) {
         xmlDocumentAsString = xmlDocumentAsString.replace(XML_OLD_HEADER, XML_SOAP_HEADER);
-        xmlDocumentAsString = xmlDocumentAsString + XML_SOAP_FOOTER;
+        xmlDocumentAsString += XML_SOAP_FOOTER;
         return this;
     }
 
