@@ -36,8 +36,6 @@ public class Reporter {
         return extent;
     }
 
-
-
     public void logTestStep(String stepName, String stepDescription) {
         String message = "<h5>" + stepName + ": " + stepDescription + "</h5>";
         TestSuiteManager.getTest().log(LogStatus.INFO, message);
