@@ -1,12 +1,13 @@
 package util;
 
 public class Constants {
-    public static final String REPORT_FILE_PATH = "reporter/results.html";
+    public static final String PATH = "123";
     public static final String USER_DATA_PATH = "test_data/json/users/users.json";
     public static final String RAW_XML_PATH = "test_data/xml/C65148_WorkflowBREOnline8020.xml";
     public static final String READY_XML_PATH = "test_data/xml/C65148_WorkflowBREOnline8020_header_footer.xml";
+    public static final String TEST_XML_PATH = "test_data/xml/test.xml";
     public static final String APP_PROPERTIES_PATH = "test_properties/runner.properties";
-    public static final String LOG4J_CONFIG_PATH = "properties/log4j.xml";
+    public static final String XML_OLD_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 
     public static final String XML_SOAP_HEADER =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +

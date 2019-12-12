@@ -15,7 +15,7 @@ public class Browser {
     private RemoteWebDriver driver;
     private static final String REMOTE_WEBDRIVER_URL = PropertyHandler.getValue("hubURL");
 
-    private void createRemoteWebDriverChrome() {
+    public void createRemoteWebDriverChrome() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--start-maximized");
         chromeOptions.addArguments("--ignore-certificate-errors");
