@@ -5,27 +5,28 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
+import reporter.ReporterTool;
 
 public class Listeners implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        //stub
+        ReporterTool.extentTest.log(LogStatus.INFO, "Test have started");
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        extentTest.log(LogStatus.PASS, "Test passed");
+        ReporterTool.extentTest.log(LogStatus.PASS, "Test passed");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        Reporter.getExtentTest.log(LogStatus.FAIL, "Test failed >>> "+ result.getThrowable());
+        ReporterTool.extentTest.log(LogStatus.INFO, "Test failed >>> "+ result.getThrowable());
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        Reporter.getExtentTest.log(LogStatus.SKIP, "Test skipped >>>" + result.getThrowable());
+        ReporterTool.extentTest.log(LogStatus.SKIP, "Test skipped >>>" + result.getThrowable());
     }
 
     @Override

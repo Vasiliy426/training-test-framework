@@ -16,10 +16,6 @@ public class LoggerTool {
         LOGGER.info("Info: " + message);
     }
 
-    public static void logBoldInfo(String message) {
-        LOGGER.info("RP_MESSAGE#FILE#" + "#" + "!!!MARKDOWN_MODE!!!" + "***" + message + "***");
-    }
-
     public static void logWarning(String message) {
         LOGGER.warn("Warning: " + message);
     }
@@ -27,5 +23,4 @@ public class LoggerTool {
     public static void logError(String message) {
         LOGGER.error("ERROR: " + message);
     }
-
 }
