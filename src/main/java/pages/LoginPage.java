@@ -2,12 +2,12 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import data.Credentials;
+import pages.workListPage.OpenedCasesTab;
 import util.DataHandler;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage {
-
     private Credentials credentials;
     private SelenideElement loginField = $("#ssousername");
     private SelenideElement pswField = $("#password");
@@ -17,11 +17,10 @@ public class LoginPage {
         credentials = DataHandler.getCredentials();
     }
 
-    public WLGPage loginApp() {
+    public OpenedCasesTab login() {
         loginField.setValue(credentials.getUserName());
         pswField.setValue(credentials.getPassword());
         loginBtn.click();
-        return new WLGPage();
+        return OpenedCasesTab.getTabInstance();
     }
-
 }

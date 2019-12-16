@@ -10,7 +10,6 @@ import org.testng.Reporter;
 public class Listeners implements ITestListener {
     private long suiteExecClearTime = 0L;
 
-
     @Override
     public void onTestStart(ITestResult iTestResult) {
         //stub

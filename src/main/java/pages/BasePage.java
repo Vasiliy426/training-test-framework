@@ -1,5 +1,5 @@
 package pages;
 
 public class BasePage {
-    // stub
+    // singleton for tabs
 }
