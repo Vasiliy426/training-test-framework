@@ -41,6 +41,7 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
                 "Verify, that the case still available on the Allianz-BRE-User OPEN LIST\n" +
                         "Check responsible User = Allianz.sad.ralf@audatex.de");
         loginPage.login().openCase(new RandomClaimNumberGenerator.generate()); //pass generated number here
+//        todo check user
 
         logTestStep("Step 3",
                 "Click on the line of the new Case and open the Case.",

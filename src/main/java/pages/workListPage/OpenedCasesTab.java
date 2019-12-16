@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class OpenedCasesTab {
-    private static OpenedCasesTab openedCasesTab;
+    private static OpenedCasesTab openedCasesTab = null;
     private static ElementsCollection casesNumbersList = $$(By.cssSelector("[aria-describedby='claimNumber']"));
 
     private OpenedCasesTab() {}

@@ -6,7 +6,7 @@ import pages.workListPage.OpenedCasesTab;
 import static com.codeborne.selenide.Selenide.$;
 
 public class CaseDataTab {
-    private static CaseDataTab caseDataTab;
+    private static CaseDataTab caseDataTab = null;
 
     private CaseDataTab() {}
 

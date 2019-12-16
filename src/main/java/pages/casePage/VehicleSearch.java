@@ -1,7 +1,7 @@
 package pages.casePage;
 
 public class VehicleSearch {
-    private static VehicleSearch vehicleSearchTab;
+    private static VehicleSearch vehicleSearchTab = null;
 
     private VehicleSearch() {}
 
