@@ -2,9 +2,10 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import data.Credentials;
-import util.DataHandler;
+import util.JsonHandler;
 
 import static com.codeborne.selenide.Selenide.$;
+import static util.Constants.USER_DATA_PATH;
 
 public class LoginPage {
 
@@ -14,7 +15,7 @@ public class LoginPage {
     private SelenideElement loginBtn = $(".btn-submit");
 
     public LoginPage() {
-        credentials = DataHandler.getCredentials();
+        credentials = JsonHandler.fromStringToObject(USER_DATA_PATH, Credentials.class);
     }
 
     public WLGPage loginApp() {
