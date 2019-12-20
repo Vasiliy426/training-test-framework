@@ -21,7 +21,7 @@ public class Listeners implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        ReporterTool.extentTest.log(LogStatus.INFO, "Test failed >>> "+ result.getThrowable());
+        ReporterTool.extentTest.log(LogStatus.FAIL, "Test failed >>> "+ result.getThrowable());
     }
 
     @Override
