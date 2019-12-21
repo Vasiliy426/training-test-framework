@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import data.Credentials;
+import pages.workListPage.OpenCasesTab;
 import util.JsonHandler;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -18,11 +19,11 @@ public class LoginPage {
         credentials = JsonHandler.fromStringToObject(USER_DATA_PATH, Credentials.class);
     }
 
-    public WLGPage loginApp() {
+    public OpenCasesTab loginApp() {
         loginField.setValue(credentials.getUserName());
         pswField.setValue(credentials.getPassword());
         loginBtn.click();
-        return new WLGPage();
+        return new OpenCasesTab();
     }
 
 }
