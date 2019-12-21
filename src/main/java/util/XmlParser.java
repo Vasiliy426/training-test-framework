@@ -25,7 +25,7 @@ import static util.Constants.*;
 public class XmlParser {
     private Document document = null;
 
-    public void prepareXmlForSoap(String login, String password) {
+    public void prepareXmlForSoap(String login, String password) { // todo object of Credentials.class
         this.convertFileToDomDocument(RAW_XML_PATH)
                 .addHeaderAndFooter(XML_SOAP_HEADER, XML_SOAP_FOOTER)
                 .updateCredentials(login, password) //TODO get values from json
