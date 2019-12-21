@@ -48,7 +48,7 @@ public class SOAP {
             String path = Objects.requireNonNull(PropertyHandler.class.getClassLoader().getResource(TEST_XML_PATH)).getPath();
             SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(path), PropertyHandler.getValue("soapURL"));
 
-            if (!XmlParser.taskIsUploaded(soapResponse)) {
+            if (!XmlParser.isTaskUploaded(soapResponse)) {
                 throw new Exception("Task in not uploaded");
             }
 
