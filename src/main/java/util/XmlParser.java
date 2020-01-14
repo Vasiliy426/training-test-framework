@@ -1,5 +1,6 @@
 package util;
 
+import data.Credentials;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -13,7 +14,6 @@ import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -22,11 +22,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
-import static util.Constants.RAW_XML_PATH;
-import static util.Constants.READY_XML_PATH;
-import static util.Constants.XML_OLD_HEADER;
-import static util.Constants.XML_SOAP_FOOTER;
-import static util.Constants.XML_SOAP_HEADER;
+import static util.Constants.*;
 
 public class XmlParser {
     private Document domDocument = null;
@@ -48,11 +44,12 @@ public class XmlParser {
         return false;
     }
 
-    public void prepareXmlForSoap(String login, String password) { // todo object of Credentials.class
+    public void prepareXmlForSoap() { // todo object of Credentials.class
+        Credentials credentials = JsonHandler.fromStringToObject(USER_DATA_PATH, Credentials.class);
         this.convertFileToDomDocument(RAW_XML_PATH)
                 .convertDomDocumentToString()
                 .addHeaderAndFooter(XML_SOAP_HEADER, XML_SOAP_FOOTER)
-                .updateCredentials(login, password) //TODO get values from json
+                .updateCredentials(credentials.getUserName(), credentials.getPassword()) //TODO get values from json
                 .updateClaimNumber(randomClaimNumber)
                 .writeDomDocumentToFile(READY_XML_PATH);
     }
