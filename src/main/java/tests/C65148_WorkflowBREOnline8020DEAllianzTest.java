@@ -1,21 +1,19 @@
 package tests;
 
 import browser.Browser;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import pages.NavigationMenu;
 import soap.SOAP;
 import util.PropertyHandler;
-import util.XmlParser;
 
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
+import static util.Constants.CASE_NAME;
 
 public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
 
-    private WebDriver driver;
     private LoginPage loginPage;
 
     @BeforeMethod(alwaysRun = true)
@@ -29,13 +27,10 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
     @Test
     public void c65148_WorkflowBREOnline8020DEAllianzTest() {
         logTestStep("Step 1",
-                "Upload of the attached Case TC_WorkflowOnline.xml (Use SokraTest)",
-                "The Case is successfully uploaded to the User.");
-        SOAP.createCase();
-        loginPage.loginApp().openCase(XmlParser.randomClaimNumber);
-        //just to test that it works
-        System.out.println("works");
-        sleep(5000);
+                "Upload of the attached Case TC_WorkflowOnline.xml",
+                "The Case is successfully uploaded to the system.");
+        SOAP.createCase(this.getClass().getSimpleName());
+        loginPage.loginApp().openCase(CASE_NAME);
 
         logTestStep("Step 2",
                 "Login as AllianzBRE-User allianz.sad.ralf@audatex.de / Pw: demo",
@@ -46,6 +41,8 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void closeBrowser() {
+        NavigationMenu navigationMenu = new NavigationMenu();
+        navigationMenu.openWLG().deleteCase(CASE_NAME);
         Browser.quitWebDriver();
     }
 }

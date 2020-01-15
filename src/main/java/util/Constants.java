@@ -3,16 +3,19 @@ package util;
 import java.io.File;
 
 public class Constants {
+
+    public static final String CASE_NAME = "AX2018-11111115";
     public static final String USER_DIR = System.getProperty("user.dir");
     public static final String SEP = File.separator;
 
     public static final String SOURCES_FOLDER = USER_DIR + SEP + "src" + SEP + "main" + SEP + "java";
     public static final String RESOURCES_FOLDER = USER_DIR + SEP + "src" + SEP + "main" + SEP + "resources";
+    public static final String TEST_DATA_XML_FOLDER = RESOURCES_FOLDER + SEP + "test_data" + SEP + "xml" + SEP;
 
     public static final String USER_DATA_PATH = RESOURCES_FOLDER + SEP + "test_data" + SEP + "json" + SEP + "users" + SEP + "users.json";
     public static final String RAW_XML_PATH = RESOURCES_FOLDER + SEP + "test_data" + SEP + "xml" + SEP + "C65148_WorkflowBREOnline8020.xml";
     public static final String READY_XML_PATH = RESOURCES_FOLDER + SEP + "test_data" + SEP + "xml" + SEP + "C65148_WorkflowBREOnline8020_header_footer.xml";
-    public static final String TEST_XML_PATH = RESOURCES_FOLDER + SEP + "test_data" + SEP + "xml" + SEP + "test.xml";
+    //public static final String TEST_XML_PATH = RESOURCES_FOLDER + SEP + "test_data" + SEP + "xml" + SEP + "C65148_WorkflowBREOnline8020DEAllianzTest.xml";
     public static final String APP_PROPERTIES_PATH = RESOURCES_FOLDER + SEP + "test_properties" + SEP + "runner.properties";
     public static final String REPORT_FILE_PATH = SOURCES_FOLDER + SEP + "reporter" + SEP + "TestReport.html";
     public static final String LOG4J_CONFIG_PATH = RESOURCES_FOLDER + SEP + "log4j.xml";

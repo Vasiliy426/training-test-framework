@@ -13,9 +13,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.Objects;
 
-import static util.Constants.TEST_XML_PATH;
+import static util.Constants.TEST_DATA_XML_FOLDER;
 
 public class SOAP {
 
@@ -40,13 +39,12 @@ public class SOAP {
         transformer.transform(sourceContent, result);
     }
 
-    public static void createCase() {
+    public static void createCase(String testName) {
         try {
             SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
             SOAPConnection soapConnection = soapConnectionFactory.createConnection();
 
-            String path = Objects.requireNonNull(PropertyHandler.class.getClassLoader().getResource(TEST_XML_PATH)).getPath();
-            SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(path), PropertyHandler.getValue("soapURL"));
+            SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(TEST_DATA_XML_FOLDER + testName + ".xml"), PropertyHandler.getValue("soapURL"));
 
             if (!XmlParser.isTaskUploaded(soapResponse)) {
                 throw new Exception("Task in not uploaded");
