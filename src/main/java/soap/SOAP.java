@@ -43,18 +43,14 @@ public class SOAP {
         try {
             SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
             SOAPConnection soapConnection = soapConnectionFactory.createConnection();
-
             SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(TEST_DATA_XML_FOLDER + testName + ".xml"), PropertyHandler.getValue("soapURL"));
-
             if (!XmlParser.isTaskUploaded(soapResponse)) {
                 throw new Exception("Task in not uploaded");
             }
-
             soapConnection.close();
         } catch (Exception e) {
             System.err.println("Error occurred while sending SOAP Request to Server");
             e.printStackTrace();
         }
-
     }
 }

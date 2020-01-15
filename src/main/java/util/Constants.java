@@ -15,7 +15,6 @@ public class Constants {
     public static final String USER_DATA_PATH = RESOURCES_FOLDER + SEP + "test_data" + SEP + "json" + SEP + "users" + SEP + "users.json";
     public static final String RAW_XML_PATH = RESOURCES_FOLDER + SEP + "test_data" + SEP + "xml" + SEP + "C65148_WorkflowBREOnline8020.xml";
     public static final String READY_XML_PATH = RESOURCES_FOLDER + SEP + "test_data" + SEP + "xml" + SEP + "C65148_WorkflowBREOnline8020_header_footer.xml";
-    //public static final String TEST_XML_PATH = RESOURCES_FOLDER + SEP + "test_data" + SEP + "xml" + SEP + "C65148_WorkflowBREOnline8020DEAllianzTest.xml";
     public static final String APP_PROPERTIES_PATH = RESOURCES_FOLDER + SEP + "test_properties" + SEP + "runner.properties";
     public static final String REPORT_FILE_PATH = SOURCES_FOLDER + SEP + "reporter" + SEP + "TestReport.html";
     public static final String LOG4J_CONFIG_PATH = RESOURCES_FOLDER + SEP + "log4j.xml";
@@ -28,7 +27,6 @@ public class Constants {
             "    <soapenv:Header/>\n" +
             "    <soapenv:Body>\n" +
             "        <ser:createTaskRequest>\n" +
-            "            <!--Zero or more repetitions:-->\n" +
             "            <ser:parameter xsltParameter=\"?\">\n" +
             "                <ser:name>loginId</ser:name>\n" +
             "                <ser:value>LOGIN</ser:value>\n" +
@@ -37,7 +35,6 @@ public class Constants {
             "                <ser:name>password</ser:name>\n" +
             "                <ser:value>PASSWORD</ser:value>\n" +
             "            </ser:parameter>\n" +
-            "            <!--Optional:-->\n" +
             "            <ser:payload>";
     public static final String XML_SOAP_FOOTER =
             "             </ser:payload>\n" +
