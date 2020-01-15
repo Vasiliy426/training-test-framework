@@ -30,19 +30,33 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
                 "Upload of the attached Case TC_WorkflowOnline.xml",
                 "The Case is successfully uploaded to the system.");
         SOAP.createCase(this.getClass().getSimpleName());
-        loginPage.loginApp().openCase(CASE_NAME);
 
         logTestStep("Step 2",
                 "Login as AllianzBRE-User allianz.sad.ralf@audatex.de / Pw: demo",
                 "Verify, that the case still available on the Allianz-BRE-User OPEN LIST\n" +
                         "Check responsible User = Allianz.sad.ralf@audatex.de");
+        loginPage.loginApp()
+//                .checkUser(credentials)
+                .openOpenCasesTab()
+                .searchCaseByNumber(CASE_NAME)
+                .openFirstCaseFromSearchResults();
 
+        logTestStep("Step ???",
+                "Open Qapter",
+                "Page with Qapter should be visible");
+        NavigationMenu
+                .openCalculationPage()
+                .openOnePadQapterTab()
+                .clickStartQapterButton();
     }
 
     @AfterMethod(alwaysRun = true)
     public void closeBrowser() {
-        NavigationMenu navigationMenu = new NavigationMenu();
-        navigationMenu.openWLG().deleteCase(CASE_NAME);
+        NavigationMenu
+                .openWorkListPage()
+                .openOpenCasesTab()
+                .searchCaseByNumber(CASE_NAME)
+                .deleteCase(CASE_NAME);
         Browser.quitWebDriver();
     }
 }

@@ -4,18 +4,15 @@
     <soapenv:Header/>
     <soapenv:Body>
         <ser:createTaskRequest>
-            <!--Zero or more repetitions:-->
             <ser:parameter xsltParameter="?">
                 <ser:name>loginId</ser:name>
                 <ser:value>allianz.sad.ralf@audatex.de</ser:value>
-                <!--    Need to change this ^^-->
             </ser:parameter>
             <ser:parameter xsltParameter="?">
                 <ser:name>password</ser:name>
                 <ser:value>demo</ser:value>
                 <!--    Need to change this ^^-->
             </ser:parameter>
-            <!--Optional:-->
             <ser:payload>
                 <Task>
                     <Versions>

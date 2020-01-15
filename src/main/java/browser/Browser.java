@@ -12,7 +12,7 @@ import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 public class Browser {
-    private RemoteWebDriver driver;
+    private static RemoteWebDriver driver;
     private static final String REMOTE_WEBDRIVER_URL = PropertyHandler.getValue("hubURL");
 
     public void createRemoteWebDriverChrome() {
@@ -35,5 +35,9 @@ public class Browser {
 
     public static void quitWebDriver() {
         closeWebDriver();
+    }
+
+    public static RemoteWebDriver getWebdriver() {
+        return driver;
     }
 }
