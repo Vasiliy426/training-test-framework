@@ -48,6 +48,11 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
                 .openCalculationPage()
                 .openOnePadQapterTab()
                 .clickStartQapterButton();
+
+//        NavigationMenu.openAssessmentPage()
+//                .openAttachmentsTab()
+//                .selectCategoryListValue("EKAS")
+//                .uploadFile(CAR_IMAGE_PATH);
     }
 
     @AfterMethod(alwaysRun = true)

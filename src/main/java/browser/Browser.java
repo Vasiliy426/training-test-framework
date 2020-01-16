@@ -21,6 +21,7 @@ public class Browser {
         chromeOptions.addArguments("--ignore-certificate-errors");
         chromeOptions.addArguments("--disable-popup-blocking");
         chromeOptions.addArguments("--incognito");
+        chromeOptions.addArguments("--lang=de");
 
         Configuration.startMaximized = true;
         Configuration.reopenBrowserOnFail = true;
