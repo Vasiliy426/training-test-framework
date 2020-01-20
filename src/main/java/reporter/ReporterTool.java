@@ -23,9 +23,9 @@ public class ReporterTool {
         return extentReporter;
     }
 
-    public static synchronized void startReporter() {
+    public static synchronized void startReporter(String className) {
         extentReporter = null;
-        extentTest = extentReporter.startTest("C65148_WorkflowBREOnline8020DEAllianzTest");
+//        extentTest = extentReporter.startTest(className);
     }
 
     public static synchronized ExtentTest getExtentTest() {

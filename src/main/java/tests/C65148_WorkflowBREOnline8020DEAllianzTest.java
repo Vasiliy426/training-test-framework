@@ -1,6 +1,8 @@
 package tests;
 
 import browser.Browser;
+import data.Credentials;
+import logger.LoggerTool;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -18,6 +20,7 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public void startBrowser() {
+        LoggerTool.logSetUp();
         Browser browser =  new Browser();
         browser.createRemoteWebDriverChrome();
         open(PropertyHandler.getValue("appURL"));
@@ -36,18 +39,20 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
                 "Verify, that the case still available on the Allianz-BRE-User OPEN LIST\n" +
                         "Check responsible User = Allianz.sad.ralf@audatex.de");
         loginPage.loginApp()
-//                .checkUser(credentials)
+                .checkUser(loginPage.getCredentials())
                 .openOpenCasesTab()
                 .searchCaseByNumber(CASE_NAME)
                 .openFirstCaseFromSearchResults();
 
-        logTestStep("Step ???",
-                "Open Qapter",
-                "Page with Qapter should be visible");
+        logTestStep("Step 17",
+                "Click on the Tab 'DamageCapturing'\n" +
+                        "Click the button 'Qapter starten'",
+                "Verfiy, that Onepad is opened.");
         NavigationMenu
                 .openCalculationPage()
                 .openOnePadQapterTab()
                 .clickStartQapterButton();
+//                 Browser.getWebdriver().switchTo().window("1"); // todo - doesn't switch to the new Browser window with Qapter
 
 //        NavigationMenu.openAssessmentPage()
 //                .openAttachmentsTab()

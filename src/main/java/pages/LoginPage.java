@@ -2,7 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import data.Credentials;
-import pages.workListPage.OpenCasesTab;
+import logger.LoggerTool;
 import pages.workListPage.WorkListPage;
 import util.JsonHandler;
 
@@ -21,10 +21,14 @@ public class LoginPage {
     }
 
     public WorkListPage loginApp() {
-        loginField.setValue(credentials.getUserName());
+        loginField.setValue(credentials.getLogin());
         pswField.setValue(credentials.getPassword());
         loginBtn.click();
+        LoggerTool.logInfo("Signed in with login: " + credentials.getLogin() + " and password: " + credentials.getPassword());
         return new WorkListPage();
     }
 
+    public Credentials getCredentials() {
+        return credentials;
+    }
 }
