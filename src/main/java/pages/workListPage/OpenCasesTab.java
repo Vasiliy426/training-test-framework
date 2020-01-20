@@ -3,6 +3,8 @@ package pages.workListPage;
 import browser.Browser;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import exceptions.TestFrameworkException;
+import logger.LoggerTool;
 import org.openqa.selenium.By;
 import pages.casePage.CasePageGeneral;
 
@@ -22,6 +24,7 @@ public class OpenCasesTab {
     private SelenideElement searchWindow = $(By.xpath("//div[@class='container_16']"));
 
     public OpenCasesTab searchCaseByNumber(String caseNumber) {
+        LoggerTool.logInfo("Searching case with number " + caseNumber + " ...");
         searchBtn.click();
         Browser.getWebdriver().switchTo().frame(searchIFrameName);
         claimNumberFieldOnSearchWindow
@@ -33,21 +36,21 @@ public class OpenCasesTab {
         return this;
     }
 
-    public CasePageGeneral openFirstCaseFromSearchResults() {
+    public void openFirstCaseFromSearchResults() throws TestFrameworkException{
         waitForJavaScriptReady();
-        searchResultsTable.first().click();
-        return new CasePageGeneral();
-        // add logger event when search result is empty
-    }
-
-    public void openCase(String caseNumber) {
-        casesNumbersList.findBy(text(caseNumber)).click();
+        if (!searchResultsTable.isEmpty()) {
+            searchResultsTable.first().click();
+            LoggerTool.logInfo("First search result from results grid was chosen.");
+        return;
+        }
+        LoggerTool.logError("Results grid is empty.");
+        throw new TestFrameworkException();
     }
 
     public void deleteCase(String caseNumber) {
-        //add searching case
         selectCaseElement.click();
         deleteBtn.click();
         confirm();
+        LoggerTool.logWarning("Case with number " + caseNumber + " was deleted.");
     }
 }

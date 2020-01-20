@@ -1,6 +1,7 @@
 package pages.casePage.calculationPage;
 
 import com.codeborne.selenide.SelenideElement;
+import logger.LoggerTool;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -11,6 +12,7 @@ public class CalculationPage {
 
     public onePadQapterTab openOnePadQapterTab() {
         onePadQapterTab.click();
+        LoggerTool.logInfo("Switched to OnePadQapter tab.");
         return new onePadQapterTab();
     }
 }

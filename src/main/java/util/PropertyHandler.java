@@ -14,6 +14,7 @@ public class PropertyHandler {
         try {
             FileInputStream inp = new FileInputStream(APP_PROPERTIES_PATH);
             pr.load(inp);
+//            System.setProperty()
             inp.close();
         } catch (IOException e) {
             e.printStackTrace();

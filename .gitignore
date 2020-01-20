@@ -1,4 +1,5 @@
 /.idea/
 /reports/
+/reports/*
 training-test-framework.iml
 /target/
