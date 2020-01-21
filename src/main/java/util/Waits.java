@@ -19,5 +19,4 @@ public class Waits {
             wait.until(jsLoad);
         }
     }
-
 }
