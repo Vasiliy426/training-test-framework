@@ -1,7 +1,6 @@
 package tests;
 
 import browser.Browser;
-import data.Credentials;
 import logger.LoggerTool;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -13,6 +12,7 @@ import soap.SOAP;
 import util.PropertyHandler;
 
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.switchTo;
 import static util.Constants.CASE_NAME;
 
 public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
@@ -45,6 +45,9 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
                 .searchCaseByNumber(CASE_NAME)
                 .openFirstCaseFromSearchResults();
 
+        NavigationMenu.openVehicleSearchPage()
+                .downloadKBAReport();
+
         logTestStep("Step 17",
                 "Click on the Tab 'DamageCapturing'\n" +
                         "Click the button 'Qapter starten'",
@@ -52,8 +55,8 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
         NavigationMenu
                 .openCalculationPage()
                 .openOnePadQapterTab()
-                .clickStartQapterButton();
-//                 Browser.getWebdriver().switchTo().window("1");
+                .openQapter();
+
 
         logTestStep("Step 18",
                 "Click on the Button 'ModelOptions' and in left menu select motor/getriebe" +
@@ -63,10 +66,14 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
                         "Check, if following data are available:\n" +
                         "- The before identified and captured VehicleData\n" +
                         "- the selected ModelOptions");
-        QapterPage qpg = new QapterPage() // todo
-                .clickModelOptionsBtn()
+        QapterPage qapterPage = new QapterPage()
+                .openModelOptionsTab()
                 .clickLeftMenuMotorOption()
                 .verifyCheckedElementsHaveRightValues();
+
+        qapterPage.openCar3DViewTab()
+                .addDamageForHood()
+                .checkDamagesChecklist();
 
 //        NavigationMenu.openAssessmentPage()
 //                .openAttachmentsTab()
@@ -76,6 +83,7 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void closeBrowser() {
+        switchTo().window(0);
         NavigationMenu
                 .openWorkListPage()
                 .openOpenCasesTab()
