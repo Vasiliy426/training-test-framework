@@ -10,8 +10,7 @@ public class onePadQapterTab {
 
     private static SelenideElement startQapterBtn = $(By.id("BREForm_root.task.damageCapture.webpadButton"));
 
-    public QapterPage clickStartQapterButton() {
+    public void clickStartQapterButton() {
         startQapterBtn.click();
-        return new QapterPage();
     }
 }

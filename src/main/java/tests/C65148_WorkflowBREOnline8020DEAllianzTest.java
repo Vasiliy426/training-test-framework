@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.NavigationMenu;
+import pages.qapterPage.QapterPage;
 import soap.SOAP;
 import util.PropertyHandler;
 
@@ -52,7 +53,20 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
                 .openCalculationPage()
                 .openOnePadQapterTab()
                 .clickStartQapterButton();
-//                 Browser.getWebdriver().switchTo().window("1"); // todo - doesn't switch to the new Browser window with Qapter
+//                 Browser.getWebdriver().switchTo().window("1");
+
+        logTestStep("Step 18",
+                "Click on the Button 'ModelOptions' and in left menu select motor/getriebe" +
+                        "All existing VehicleData and the selected ModelOptions are available" +
+                        "go back to car overview",
+                "Model options tab with appropriate data is opened\n" +
+                        "Check, if following data are available:\n" +
+                        "- The before identified and captured VehicleData\n" +
+                        "- the selected ModelOptions");
+        QapterPage qpg = new QapterPage() // todo
+                .clickModelOptionsBtn()
+                .clickLeftMenuMotorOption()
+                .verifyCheckedElementsHaveRightValues();
 
 //        NavigationMenu.openAssessmentPage()
 //                .openAttachmentsTab()
