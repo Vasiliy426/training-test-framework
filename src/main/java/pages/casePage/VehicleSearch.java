@@ -1,14 +1,28 @@
 package pages.casePage;
 
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
+import org.openqa.selenium.By;
+
+import java.io.IOException;
+
+import static com.codeborne.selenide.Selenide.*;
+
 public class VehicleSearch {
-    private static VehicleSearch vehicleSearchTab = null;
 
-    private VehicleSearch() {}
+    private SelenideElement kbaReportBtn = $(By.id("BREForm_root.task.kbaReport.generate.kba.report"));
 
-    public static VehicleSearch getTabInstance(){
-        if(vehicleSearchTab == null){
-            vehicleSearchTab = new VehicleSearch();
+    public void downloadKBAReport() {
+        kbaReportBtn.click();
+        switchTo().window(1);
+        try {
+            download(WebDriverRunner.url());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return vehicleSearchTab;
+        executeJavaScript("window.close();");
+        switchTo().window(0);
+
     }
+
 }
