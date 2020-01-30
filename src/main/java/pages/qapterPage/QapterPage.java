@@ -39,6 +39,8 @@ public class QapterPage {
     private ElementsCollection damagesList = $$(By.xpath("//span[@class='checklist-body-part-description']"));
     private SelenideElement loader = $(By.className("loader-big"));
 
+    // todo - to select 3D parts the way Dmitry want, check out the VehiclePageQapter.java from prod framework
+
     public QapterPage openModelOptionsTab() {
         modelOptionsTabBtn.click();
         return this;
@@ -70,7 +72,7 @@ public class QapterPage {
 
     public QapterPage openChecklistTab() {
         checklistTabBtn.click();
-        loader.waitUntil(Condition.disappear, 7000);
+        loader.waitUntil(Condition.disappear, 5000);
         return this;
     }
 

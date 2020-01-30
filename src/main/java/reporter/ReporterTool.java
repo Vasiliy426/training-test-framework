@@ -1,31 +1,22 @@
 package reporter;
 
+import com.relevantcodes.extentreports.DisplayOrder;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.IExtentTestClass;
 import com.relevantcodes.extentreports.LogStatus;
-import com.relevantcodes.extentreports.model.ITest;
-import logger.LoggerTool;
 
-import java.util.Date;
-
-import static util.Constants.REPORT_FILE_PATH;
+import static util.Constants.*;
 
 public class ReporterTool {
-    public static ExtentReports extentReporter;
-    public static ExtentTest extentTest;
-    private static int numberOfStepInReport = 0;
+
+    private static ExtentReports extentReporter;
+    private static ExtentTest extentTest;
 
     public static synchronized ExtentReports getExtentReporter() {
         if (extentReporter == null) {
-            extentReporter = new ExtentReports(REPORT_FILE_PATH, true);
+            extentReporter = new ExtentReports(REPORT_FILE_PATH, true, DisplayOrder.OLDEST_FIRST);
         }
         return extentReporter;
-    }
-
-    public static synchronized void startReporter(String className) {
-        extentReporter = null;
-//        extentTest = extentReporter.startTest(className);
     }
 
     public static synchronized ExtentTest getExtentTest() {
@@ -35,15 +26,43 @@ public class ReporterTool {
         return extentTest;
     }
 
-    public void logTestStep(String stepName, String stepDescription) {
-        String message = "<h5>" + stepName + ": " + stepDescription + "</h5>";
-        extentTest.log(LogStatus.INFO, numberOfStepInReport + message);
-        numberOfStepInReport++;
+    public static synchronized void startTest(String testName, String testDescription) {
+        getExtentReporter().loadConfig(ExtentReports.class, EXTENTREPORTS_CONFIG_PATH);
+        extentTest = getExtentReporter().startTest(testName, testDescription);
     }
 
-    public void logTestSubStep(String stepDescription) {
-        String message = "<h5>Test Sub Step " + stepDescription + "</h5>";
+    public static void reportTestStepHeader(String stepDescription) {
+        String message = "<h5>" + stepDescription + "</h5>";
         extentTest.log(LogStatus.INFO, message);
     }
 
+    public static void reportInfo(String stepDescription) {
+        String message = "<h6>" + stepDescription + "</h6>";
+        extentTest.log(LogStatus.INFO, message);
+    }
+
+    public static void reportTestPassed(String stepDescription) {
+        String message = "<h6>" + stepDescription + "</h6>";
+        extentTest.log(LogStatus.PASS, message);
+    }
+
+    public static void reportTestFailed(String stepDescription) {
+        String message = "<h6>" + stepDescription + "</h6>";
+        extentTest.log(LogStatus.FAIL, message);
+    }
+
+    public static void reportWarning(String stepDescription) {
+        String message = "<h6>" + stepDescription + "</h6>";
+        extentTest.log(LogStatus.WARNING, message);
+    }
+
+    public static void reportError(String stepDescription) {
+        String message = "<h6>" + stepDescription + "</h6>";
+        extentTest.log(LogStatus.ERROR, message);
+    }
+
+    public static void logHtmlLink(String stepDescription, String htmlLink) {
+        String message = stepDescription + " <h6><a href=\"" + htmlLink + "\"></h6>" + htmlLink;
+        extentTest.log(LogStatus.INFO, message);
+    }
 }

@@ -1,37 +1,36 @@
 package listeners;
 
-import com.relevantcodes.extentreports.LogStatus;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import org.testng.Reporter;
-import reporter.ReporterTool;
 
-public class Listeners implements ITestListener {
+import static reporter.ReporterTool.*;
+
+public class ListenersImpl implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        ReporterTool.extentTest.log(LogStatus.INFO, "Test have started");
+        reportInfo("Test have started.");
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        ReporterTool.extentTest.log(LogStatus.PASS, "Test passed");
+        reportTestPassed("TEST PASSED.");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        ReporterTool.extentTest.log(LogStatus.FAIL, "Test failed >>> "+ result.getThrowable());
+        reportTestFailed("TEST FAILED: "+ result.getThrowable());
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        ReporterTool.extentTest.log(LogStatus.SKIP, "Test skipped >>>" + result.getThrowable());
+        reportWarning("TEST SKIPPED: " + result.getThrowable());
     }
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-        //stub
+//        stub
     }
 
     @Override

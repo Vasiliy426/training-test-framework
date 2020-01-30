@@ -1,6 +1,5 @@
 package tests;
 
-import browser.Browser;
 import logger.LoggerTool;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -18,14 +17,14 @@ import static util.Constants.CASE_NAME;
 public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
 
     private LoginPage loginPage;
+    private QapterPage qapterPage;
 
     @BeforeMethod(alwaysRun = true)
     public void startBrowser() {
         LoggerTool.logSetUp();
-        Browser browser =  new Browser();
-        browser.createRemoteWebDriverChrome();
         open(PropertyHandler.getValue("appURL"));
         loginPage = new LoginPage();
+        qapterPage = new QapterPage();
     }
 
     @Test
@@ -44,19 +43,16 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
                 .openOpenCasesTab()
                 .searchCaseByNumber(CASE_NAME)
                 .openFirstCaseFromSearchResults();
-
         NavigationMenu.openVehicleSearchPage()
                 .downloadKBAReport();
 
         logTestStep("Step 17",
-                "Click on the Tab 'DamageCapturing'\n" +
-                        "Click the button 'Qapter starten'",
+                "Click on the Tab 'DamageCapturing'\n Click the button 'Qapter starten'",
                 "Verfiy, that Onepad is opened.");
         NavigationMenu
                 .openCalculationPage()
                 .openOnePadQapterTab()
                 .openQapter();
-
 
         logTestStep("Step 18",
                 "Click on the Button 'ModelOptions' and in left menu select motor/getriebe" +
@@ -66,11 +62,16 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
                         "Check, if following data are available:\n" +
                         "- The before identified and captured VehicleData\n" +
                         "- the selected ModelOptions");
-        QapterPage qapterPage = new QapterPage()
-                .openModelOptionsTab()
+        qapterPage.openModelOptionsTab()
                 .clickLeftMenuMotorOption()
                 .verifyCheckedElementsHaveRightValues();
 
+        logTestStep("Step 19",
+                "On the displayed 'Navigation Vehicle' click on the zone 'Karosserie vorn aussen' for the DamageCapturing.\n" +
+                        "Capturing of some parts with the RepairMethod E.\n" +
+                        "All captured parts are also displayed in the Checklist as 'Standard Positions'",
+                "Verify, that in the Grafic the selected parts are marked as red \n" +
+                        "Check that all captured parts are available and displayed as 'Standard Positions'");
         qapterPage.openCar3DViewTab()
                 .addDamageForHood()
                 .checkDamagesChecklist();
@@ -84,11 +85,10 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
     @AfterMethod(alwaysRun = true)
     public void closeBrowser() {
         switchTo().window(0);
-        NavigationMenu
-                .openWorkListPage()
+        NavigationMenu.openWorkListPage()
                 .openOpenCasesTab()
                 .searchCaseByNumber(CASE_NAME)
                 .deleteCase(CASE_NAME);
-        Browser.quitWebDriver();
+        // todo delete case via b2b (requires taskID(from URL) + creds)
     }
 }

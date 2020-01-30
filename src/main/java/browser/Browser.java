@@ -37,8 +37,4 @@ public class Browser {
     public static void quitWebDriver() {
         closeWebDriver();
     }
-
-    public static RemoteWebDriver getWebdriver() {
-        return driver;
-    }
 }

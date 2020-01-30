@@ -3,6 +3,7 @@ package logger;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 
+import static reporter.ReporterTool.*;
 import static util.Constants.LOG4J_CONFIG_PATH;
 
 public class LoggerTool {
@@ -12,18 +13,23 @@ public class LoggerTool {
         DOMConfigurator.configure(LOG4J_CONFIG_PATH);
     }
 
+    public static void logTestStep(String message) {
+        LOGGER.info(message);
+        reportTestStepHeader(message);
+    }
+
     public static void logInfo(String message) {
         LOGGER.info(message);
-        // todo - add reporter event
+        reportInfo(message);
     }
 
     public static void logWarning(String message) {
         LOGGER.warn(message);
-        // todo - add reporter event
+        reportWarning(message);
     }
 
     public static void logError(String message) {
         LOGGER.error(message);
-        // todo - add reporter event
+        reportError(message);
     }
 }
