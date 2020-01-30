@@ -7,6 +7,7 @@ public class Constants {
     public static final String CASE_NAME = "AX2018-11111115";
     public static final String USER_DIR = System.getProperty("user.dir");
     public static final String SEP = File.separator;
+    public static final int TIMEOUT_IN_SECS_5 = 5;
 
     public static final String SOURCES_FOLDER = USER_DIR + SEP + "src" + SEP + "main" + SEP + "java";
     public static final String RESOURCES_FOLDER = USER_DIR + SEP + "src" + SEP + "main" + SEP + "resources";
@@ -18,6 +19,7 @@ public class Constants {
     public static final String READY_XML_PATH = RESOURCES_FOLDER + SEP + "test_data" + SEP + "xml" + SEP + "C65148_WorkflowBREOnline8020_header_footer.xml";
     public static final String APP_PROPERTIES_PATH = RESOURCES_FOLDER + SEP + "test_properties" + SEP + "runner.properties";
     public static final String REPORT_FILE_PATH = SOURCES_FOLDER + SEP + "reporter" + SEP + "TestReport.html";
+    public static final String EXTENTREPORTS_CONFIG_PATH =  RESOURCES_FOLDER + SEP + "extent-config.xml";
     public static final String LOG4J_CONFIG_PATH = RESOURCES_FOLDER + SEP + "log4j.xml";
     public static final String CAR_IMAGE_PATH = FILES_DATA_FOLDER + SEP + "car.jpeg";
 

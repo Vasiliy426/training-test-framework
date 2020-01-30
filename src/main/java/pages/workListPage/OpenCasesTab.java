@@ -1,5 +1,6 @@
 package pages.workListPage;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import exceptions.TestFrameworkException;
@@ -7,7 +8,7 @@ import logger.LoggerTool;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
-import static util.Waits.waitForJavaScriptReady;
+import static util.Waits.*;
 
 public class OpenCasesTab {
 
@@ -19,16 +20,10 @@ public class OpenCasesTab {
 
 
     public OpenCasesTab searchCaseByNumber(String caseNumber) {
-        LoggerTool.logInfo("Searching case with number " + caseNumber + " ...");
+        LoggerTool.logInfo("Searching case with number " + caseNumber + "...");
         searchField.sendKeys(caseNumber);
         waitForJavaScriptReady();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        // todo - waiter around 5 secs to download search results
+        waitForJQueryLoad();
         return this;
     }
 
@@ -46,6 +41,6 @@ public class OpenCasesTab {
         selectCaseElement.click();
         deleteBtn.click();
         confirm();
-        LoggerTool.logWarning("Case with number " + caseNumber + " was deleted.");
+        LoggerTool.logInfo("Case with number " + caseNumber + " was deleted.");
     }
 }

@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class VehicleSearch {
+public class VehicleSearchPage {
 
     private SelenideElement kbaReportBtn = $(By.id("BREForm_root.task.kbaReport.generate.kba.report"));
 
@@ -22,7 +22,6 @@ public class VehicleSearch {
         }
         executeJavaScript("window.close();");
         switchTo().window(0);
-
     }
 
 }
