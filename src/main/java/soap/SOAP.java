@@ -1,7 +1,6 @@
 package soap;
 
 import org.apache.commons.compress.utils.IOUtils;
-import util.PropertyHandler;
 import util.XmlParser;
 
 import javax.xml.soap.*;
@@ -43,7 +42,7 @@ public class SOAP {
         try {
             SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
             SOAPConnection soapConnection = soapConnectionFactory.createConnection();
-            SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(TEST_DATA_XML_FOLDER + testName + ".xml"), PropertyHandler.getValue("soapURL"));
+            SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(TEST_DATA_XML_FOLDER + testName + ".xml"), System.getProperty("soapURL"));
             if (!XmlParser.isTaskUploaded(soapResponse)) {
                 throw new Exception("Task in not uploaded");
             }

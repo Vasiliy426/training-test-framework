@@ -8,7 +8,6 @@ import pages.LoginPage;
 import pages.NavigationMenu;
 import pages.qapterPage.QapterPage;
 import soap.SOAP;
-import util.PropertyHandler;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -22,7 +21,7 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void startBrowser() {
         LoggerTool.logSetUp();
-        open(PropertyHandler.getValue("appURL"));
+        open(System.getProperty("appURL"));
         loginPage = new LoginPage();
         qapterPage = new QapterPage();
     }

@@ -4,12 +4,9 @@ import browser.Browser;
 import com.codeborne.selenide.WebDriverRunner;
 import listeners.ListenersImpl;
 import logger.LoggerTool;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
 import reporter.ReporterTool;
+import util.PropertyHandler;
 
 import java.lang.reflect.Method;
 
@@ -22,6 +19,7 @@ public class BaseTest {
 
     @BeforeSuite
     public void beforeSuite() {
+        PropertyHandler.readProperties();
         Browser browser = new Browser();
         browser.createRemoteWebDriverChrome();
     }
