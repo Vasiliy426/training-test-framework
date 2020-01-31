@@ -3,7 +3,6 @@ package browser;
 import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import util.PropertyHandler;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -13,7 +12,7 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 public class Browser {
     private static RemoteWebDriver driver;
-    private static final String REMOTE_WEBDRIVER_URL = PropertyHandler.getValue("hubURL");
+    private static final String REMOTE_WEBDRIVER_URL = System.getProperty("hubURL");
 
     public void createRemoteWebDriverChrome() {
         ChromeOptions chromeOptions = new ChromeOptions();
@@ -25,6 +24,8 @@ public class Browser {
 
         Configuration.startMaximized = true;
         Configuration.reopenBrowserOnFail = true;
+        Configuration.timeout = Long.parseLong(System.getProperty("selenide.timeout"));
+        Configuration.collectionsTimeout = Long.parseLong(System.getProperty("collections.timeout"));
 
         try {
             driver = new RemoteWebDriver(new URL(REMOTE_WEBDRIVER_URL), chromeOptions);

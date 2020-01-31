@@ -8,21 +8,16 @@ import static util.Constants.APP_PROPERTIES_PATH;
 
 public class PropertyHandler {
 
-    private static Properties pr = new Properties();
-
-    static {
+    public static void readProperties() {
+        Properties pr = new Properties(System.getProperties());
         try {
             FileInputStream inp = new FileInputStream(APP_PROPERTIES_PATH);
             pr.load(inp);
-//            System.setProperty()
+            System.setProperties(pr);
             inp.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static String getValue(String key) {
-        return pr.getProperty(key);
     }
 
 }
