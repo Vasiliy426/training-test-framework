@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import pages.casePage.VehicleSearchPage;
 import pages.casePage.assessmentPage.AssessmentPage;
 import pages.casePage.calculationPage.CalculationPage;
+import pages.casePage.combimedVehicleData.CombinedVehicleDataPage;
 import pages.casePage.vehicleValuesPage.VehicleValuesPage;
 import pages.workListPage.WorkListPage;
 
@@ -18,6 +19,7 @@ public class NavigationMenu {
     private static SelenideElement assessmentPageBtn = $(By.id("toDoListItem_Assessment"));
     private static SelenideElement vehicleSearchPageBtn = $(By.id("icon_toDoListItem_VehicleSearch"));
     private static SelenideElement vehicleValuesPageBtn = $(By.id("toDoListItem_VehicleValues"));
+    private static SelenideElement combinedVehicleDataPageBtn = $(By.id("toDoListItem_CombinedVehicleData"));
 
     public static WorkListPage openWorkListPage() {
         backBtn.click();
@@ -47,6 +49,12 @@ public class NavigationMenu {
         vehicleValuesPageBtn.click();
         LoggerTool.logInfo("Vehicle values page is opened.");
         return new VehicleValuesPage();
+    }
+
+    public static CombinedVehicleDataPage openCombinedVehicleDataPage() {
+        combinedVehicleDataPageBtn.click();
+        LoggerTool.logInfo("CombinedVehicleData page is opened.");
+        return new CombinedVehicleDataPage();
     }
 
 }
