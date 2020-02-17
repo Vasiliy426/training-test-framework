@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.NavigationMenu;
+import pages.casePage.vehicleValuesPage.VehicleValuationTab;
 import pages.qapterPage.QapterPage;
 import soap.SOAP;
 
@@ -17,6 +18,7 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
 
     private LoginPage loginPage;
     private QapterPage qapterPage;
+    private VehicleValuationTab vehicleValuationTab;
 
     @BeforeMethod(alwaysRun = true)
     public void startBrowser() {
@@ -24,6 +26,7 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
         open(System.getProperty("appURL"));
         loginPage = new LoginPage();
         qapterPage = new QapterPage();
+        vehicleValuationTab = new VehicleValuationTab();
     }
 
     @Test
@@ -74,6 +77,39 @@ public class C65148_WorkflowBREOnline8020DEAllianzTest extends BaseTest {
         qapterPage.openCar3DViewTab()
                 .addDamageForHood()
                 .checkDamagesChecklist();
+
+        logTestStep("Step 27",
+                "Open the Tab VehicleValuation.",
+                "Verify, that the Tab VehicleValuation is opened.\n" +
+                        "Check, that followin data is available:\n" +
+                        "- the Valuation date (should be the same as the Accident Date / should be taken over automatically)\n" +
+                        "- the ValueCode '933 Wiederbeschaffungswert m. MwSt' is selected as default\n" +
+                        "- In the section results the result from the ShortValuation should be displayed\n" +
+                        "- another data are not exists in the tab VehicleValuation" );
+        NavigationMenu.openVehicleValuesPage().
+                openVehicleValuationTab()
+                .verifyValueCodeValue("933 Wiederbeschaffungswert m. MwSt")
+                .verifyAccidentDate();
+        // In the section results the result from the ShortValuation should be displayed - was not done - dependency from Vasiliy
+
+        logTestStep("Step 28",
+                "Click on the Button Valuation.",
+                "Verify, that the creating of the Valuation is started.\n" +
+                        "Verify, that the result of the Valuation is displayed\n" +
+                        "Verify, that now a button 'Bewertung anzeigen' is available" );
+        NavigationMenu.openCombinedVehicleDataPage()
+                .openTechnicalDataTab()
+                .selectReadMileageSource(); //was needed to create valuation (related to step12)
+        NavigationMenu.openVehicleValuesPage()
+                .openVehicleValuationTab()
+                .createValuation();
+
+        logTestStep("Step 29",
+                "For the display of the created Valuation, click on the button 'Bewertung anzeigen'\n" +
+                        "After Display of the Valuation, close the popup with a click on 'X'",
+                "Verify, that a Popup is opened with the displayed VehicleValuation\n" +
+                        "Verify, that the Results are displayed, e.g. Grundwert" );
+        vehicleValuationTab.downloadAndCheckValuationFile();
 
 //        NavigationMenu.openAssessmentPage()
 //                .openAttachmentsTab()
