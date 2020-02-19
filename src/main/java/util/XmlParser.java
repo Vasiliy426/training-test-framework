@@ -21,6 +21,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static util.Constants.*;
 
@@ -109,5 +112,23 @@ public class XmlParser {
             e.printStackTrace();
         }
         // TODO add logger event
+    }
+
+    public String getAccidentDate() {
+        Date date = null;
+        String accidentDateString;
+        convertFileToDomDocument(TEST_XML_PATH);
+        String patternForStringToDateParsing = "yyyy-MM-dd";
+        SimpleDateFormat dateFormatToDate = new SimpleDateFormat(patternForStringToDateParsing);
+        String accidentDate = domDocument.getElementsByTagName("AccidentDateTime").item(0).getTextContent();
+        try {
+            date = dateFormatToDate.parse(accidentDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String patternForDateToString = "dd.MM.yyyy";
+        SimpleDateFormat dateFormatToString = new SimpleDateFormat(patternForDateToString);
+        accidentDateString = dateFormatToString.format(date);
+        return accidentDateString;
     }
 }
